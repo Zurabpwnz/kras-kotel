@@ -772,9 +772,9 @@ function product_attributes_func() {
 
 			$njengahtax = $terms[0]->taxonomy;
 
-			$njengah_object_taxonomy = get_taxonomy($njengahtax);
+			$njengah_object_taxonomy = get_taxonomy( $njengahtax );
 
-			if ( isset ($njengah_object_taxonomy->labels->singular_name) ) {
+			if ( isset ( $njengah_object_taxonomy->labels->singular_name ) ) {
 
 				$tax_label = $njengah_object_taxonomy->labels->singular_name;
 
@@ -803,7 +803,7 @@ function product_attributes_func() {
 
 			}
 
-			$display_result .= implode(', ', $tax_terms) .  '</li>';
+			$display_result .= implode( ', ', $tax_terms ) . '</li>';
 			$display_result .= '</ul>';
 
 		} else {
@@ -881,6 +881,7 @@ function woocommerce_product_archive_description() {
 
 	if ( is_post_type_archive( 'product' ) && in_array( absint( get_query_var( 'paged' ) ), array( 0, 1 ), true ) ) {
 		$shop_page = get_post( wc_get_page_id( 'shop' ) );
+
 		if ( $shop_page ) {
 
 			$allowed_html = wp_kses_allowed_html( 'post' );
@@ -956,3 +957,24 @@ function mytheme_customize_register( $wp_customize ) {
 }
 
 add_action( 'customize_register', 'mytheme_customize_register', 99 );
+
+
+/*
+ * sidebar
+ */
+function register_my_widgets(){
+	register_sidebar( array(
+		'name' => "Правая боковая панель сайта",
+		'id' => 'right-sidebar',
+		'description' => 'Эти виджеты будут показаны в правой колонке сайта',
+		'before_title' => '<h2>',
+		'after_title' => '</h2>'
+	) );
+}
+add_action( 'widgets_init', 'register_my_widgets' );
+
+
+
+// Disables the block editor from managing widgets.
+add_filter( 'gutenberg_use_widgets_block_editor', '__return_false', 100 );
+add_filter( 'use_widgets_block_editor', '__return_false' );
