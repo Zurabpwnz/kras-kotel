@@ -1,0 +1,13 @@
+$bg-color: #FDFDFD;
+$primary-color: #D2170D;
+$light-color: #ffffff;
+$second-color: #676767;
+$own-color: #1C1C1C;
+$gray-color: #B5B5B5;
+
+@mixin font-heading {
+    font-family: 'Golos Text';
+}
+@mixin font-main {
+    font-family: 'PT Sans Narrow';
+}

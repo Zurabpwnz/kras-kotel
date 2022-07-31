@@ -1,0 +1,37 @@
+.brand{
+    background: #fff;
+    padding: 68px 0;
+    position: relative;
+    z-index: 2;
+
+    &__grid{
+        display: grid;
+        grid-template-columns: 219px 1fr;
+        gap: 20px;
+        align-items: center;
+        margin-bottom: 30px;
+
+        @media (max-width: 1024px){
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__desc{
+        p{
+            font-size: 16px;
+            line-height: 140%;
+            color: $second-color;
+            margin-bottom: 16px;
+
+            &:last-child{
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    &__swiper{
+        padding: 2px;
+        position: relative;
+        z-index: 2;
+    }
+}

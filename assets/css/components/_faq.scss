@@ -1,0 +1,59 @@
+.faq{
+    padding: 68px 0;
+    &__grid{
+        display: grid;
+    }
+    &__item{
+        padding-top: 20px;
+        border-bottom: 1px solid #F0F0F0;
+    }
+    &__icon{
+        background: url(./../img/chevron-down.svg) no-repeat center;
+        width: 20px;
+        height: 20px;
+        display: block;
+    }
+
+    &__header {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 22px;
+        color: $own-color;
+        cursor: pointer;
+        display: grid;
+        grid-template-columns: 20px 1fr;
+        gap: 20px;
+        padding-bottom: 20px;
+
+        &[aria-expanded=true]{
+            & + .faq__content {
+                opacity: 1;
+                max-height: max-content;
+                transition: .1s;
+            }
+            .faq__icon{
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    &__content{
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: opacity 100ms linear, max-height 200ms linear;
+		will-change: opacity, max-height;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 140%;
+        color: $second-color;
+        
+        P {
+            padding-bottom: 20px;
+        }
+    }
+
+    &__page{
+        padding-top: 0;
+    }
+}

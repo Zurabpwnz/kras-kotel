@@ -1,0 +1,113 @@
+.contact{
+    margin-bottom: 68px;
+    &__social{
+        &-list{
+            display: flex;
+            gap: 14px;
+            margin-top: 8px;
+        }
+        svg{
+            width: 36px;
+            height: 36px;
+        }
+    }
+
+    &__time-online{
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14px;
+        color: $second-color;
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        &::before{
+            display: block;
+            background: #599D51;
+            width: 5px;
+            height: 5px;
+            content: "";
+            position: relative;
+            border-radius: 100px;
+            margin-right: 4px;
+        }
+    }
+    h3{
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 156%;
+        color: $own-color;
+        margin-bottom: 26px;
+    }
+    &__grid{
+        display: grid;
+        grid-template-columns: 1.4fr 2fr;
+        gap: 20px;
+
+        @media (max-width: 1024px){
+            grid-template-columns: 1fr;
+        }
+
+        &-2{
+            max-width: 500px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+    }
+
+    &__name{
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 156%;
+        color: $own-color;
+        margin-bottom: 16px;
+    }
+    &__dillers{
+        display: grid;
+        gap: 6px;
+        max-height: 460px;
+        overflow: scroll;
+        &-item{
+            background: #F1F4F6;
+            border-radius: 5px;
+            padding: 24px;
+            grid-template-columns: 1fr 141px;
+            gap: 20px;
+            width: 100%;
+            display: grid;
+        }
+        &-left{
+            display: grid;
+            gap: 14px;
+        }
+    }
+
+    &__call{
+        display: grid;
+        svg{
+            width: 17px;
+            height: 16px;
+        }
+    }
+    &__phone{
+        font-weight: 600;
+        font-size: 19px;
+        line-height: 23px;
+        color: $own-color;
+        display: grid;
+        grid-template-columns: 17px 1fr;
+        gap: 12px;
+        align-items: center;
+    }
+    &__email{
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+        /* identical to box height */
+        padding-left: 30px;
+
+        color: #888888;
+    }
+}

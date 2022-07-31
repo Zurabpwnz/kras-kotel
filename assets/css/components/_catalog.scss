@@ -1,0 +1,114 @@
+.catalog{
+    margin-bottom: 56px;
+}
+.page-inner{
+    margin-bottom: 56px;
+    &__content{
+        display: grid;
+        gap: 30px;
+    }
+    &__form{
+        background: #FFFFFF;
+        border-radius: 5px;
+        padding: 24px;
+        box-shadow: 0px 14px 24px rgba(104, 54, 52, 0.1);
+        display: grid;
+        gap: 12px;
+        max-width: 787px;
+        width: 100%;
+        form {
+            max-width: 660px;
+            margin-left: 68px;
+            @media (max-width: 1024px){
+                margin-left: 0;
+            }
+        }
+        &-top{
+            display: grid;
+            grid-template-columns: 46px 1fr;
+            gap: 24px;
+            align-items: center;
+            p{
+                max-width: 495px;
+                font-size: 16px;
+                line-height: 138.88%;
+                color: $second-color;
+                span{
+                    color: $own-color;
+                }
+            }
+        }
+
+        &-ava{
+            position: relative;
+            &::after{
+                position: absolute;
+                content: "";
+                background: #27AE60;
+                border: 1px solid #171717;
+                border-radius: 1000px;
+                width: 8px;
+                height: 8px;
+                right: 3px;
+                bottom: 3px;
+            }
+            img{
+                width: 46px;
+                height: 46px;
+                border-radius: 100px;
+            }
+
+        }
+    }
+}
+
+.product{
+    margin-bottom: 68px;
+    &__grid{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+
+        @media (max-width: 768px){
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__desc{
+        display: grid;
+        gap: 16px;
+    }
+
+    &__property{
+        font-size: 12px;
+        line-height: 140%;
+        color: $own-color;
+        display: grid;
+        gap: 6px;
+        span{
+            font-weight: 600;
+        }
+    }
+    &__photo{
+        border: 1px solid #F1F4F6;
+        border-radius: 5px;
+        background: #fff;
+        img{
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+    &__price{
+        font-weight: 600;
+        font-size: 22px;
+        line-height: 26px;
+        color: $own-color;
+    }
+
+    h1{
+        font-weight: 600;
+        font-size: 38px;
+        line-height: 140%;
+        color: $own-color;
+    }
+}

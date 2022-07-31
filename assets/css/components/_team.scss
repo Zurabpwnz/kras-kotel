@@ -1,0 +1,62 @@
+.team{
+    padding: 0 0 68px;
+
+    &__grid{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px 20px;
+
+        @media (max-width: 768px){
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @media (max-width: 550px){
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__item{
+        display: grid;
+        grid-template-columns: 141px 1fr;
+        gap: 16px;
+        align-items: center;
+    }
+
+    &__photo{
+        height: 141px;
+        width: 141px;
+        display: block;
+        position: relative;
+        border-radius: 5px;
+        background-size: cover;
+
+        &::after{
+            position: absolute;
+            background: url(./../img/fire.svg);
+            content: "";
+            width: 29px;
+            height: 30px;
+            background-size: contain;
+            display: block;
+            right: -15px;
+            top: -15px;
+        }
+    }
+
+    &__info{
+        display: grid;
+        gap: 3px;
+
+        h3{
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 140%;
+            color: $own-color;
+        }
+
+        p, a{
+            font-size: 14px;
+            line-height: 140%;
+            color: $second-color;
+        }
+    }
+}
