@@ -28,122 +28,117 @@ get_header( 'shop' );
  */
 do_action( 'woocommerce_before_main_content' ); ?>
 
-	<section class="catalog">
-		<div class="container">
-			<div class="group-title">
-				<h3 class="title title-h3">КОТЛЫ ОТОПЛЕНИЯ</h3>
-				<a href="/kotly-otopleniya/" class="more-link">Перейти в каталог</a>
-			</div> <!-- group-title -->
 
-			<div class="col col-3">
-				<article class="product-item">
-					<div class="product-item__top">
-						<div class="product-item__sticker">Хит</div>
-						<img src="https://kraskotel.local/wp-content/themes/kras-kotel/assets/img/product.png" alt="vulcan eko котел">
-					</div>
-					<div class="product-item__middle">
-						<div class="product-item__available">В наличии</div>
-						<h4 class="product-item__title">Vulkan EKO</h4>
-						<ul class="product-item__property">
-							<li>Автоматические</li>
-							<li>Мощность: 12-100 кВт.</li>
-						</ul>
-						<div class="product-item__price">от 21 560 ₽</div>
-					</div>
-					<div class="product-item__bottom">
-						<a href="https://kras-kotel.dacorn.ru/katalog/kotly-otopleniya/avtomaticheskie-kotly/vulkan-eko/" class="btn">Подробнее</a>
-						<a href="#" class="more-link">Узнать цену</a>
-					</div>
-				</article>
-				<article class="product-item">
-					<div class="product-item__top">
-						<div class="product-item__sticker">Хит</div>
-						<img src="https://kraskotel.local/wp-content/themes/kras-kotel/assets/img/product.png" alt="vulcan eko котел">
-					</div>
-					<div class="product-item__middle">
-						<div class="product-item__available">В наличии</div>
-						<h4 class="product-item__title">Vulkan EKO</h4>
-						<ul class="product-item__property">
-							<li>Автоматические</li>
-							<li>Мощность: 12-100 кВт.</li>
-						</ul>
-						<div class="product-item__price">от 21 560 ₽</div>
-					</div>
-					<div class="product-item__bottom">
-						<a href="https://kras-kotel.dacorn.ru/katalog/kotly-otopleniya/avtomaticheskie-kotly/vulkan-eko/" class="btn">Подробнее</a>
-						<a href="#" class="more-link">Узнать цену</a>
-					</div>
-				</article>
-				<article class="product-item">
-					<div class="product-item__top">
-						<div class="product-item__sticker">Хит</div>
-						<img src="https://kraskotel.local/wp-content/themes/kras-kotel/assets/img/product.png" alt="vulcan eko котел">
-					</div>
-					<div class="product-item__middle">
-						<div class="product-item__available">В наличии</div>
-						<h4 class="product-item__title">Vulkan EKO</h4>
-						<ul class="product-item__property">
-							<li>Автоматические</li>
-							<li>Мощность: 12-100 кВт.</li>
-						</ul>
-						<div class="product-item__price">от 21 560 ₽</div>
-					</div>
-					<div class="product-item__bottom">
-						<a href="https://kras-kotel.dacorn.ru/katalog/kotly-otopleniya/avtomaticheskie-kotly/vulkan-eko/" class="btn">Подробнее</a>
-						<a href="#" class="more-link">Узнать цену</a>
-					</div>
-				</article>
-			</div>
+<?php
 
-		</div> <!-- contaienr -->
-	</section>
+$args         = [
+	'taxonomy' => 'product_cat'
+];
+$categories   = get_categories( $args );
+$postParentIn = [];
+
+foreach ( $categories as $item_cat ) {
+	$postParentIn[] = $item_cat->term_id;
+	?>
+
+    <section class="catalog">
+        <div class="container">
+            <div class="group-title">
+                <h3 class="title title-h3"><?php echo $item_cat->name; ?></h3>
+                <a href="<?php echo get_category_link( $item_cat->term_id ); ?>" class="more-link">Перейти в каталог</a>
+            </div> <!-- group-title -->
+
+            <div class="col col-3">
+				<?php
+				// Выполнение запроса по категориям и атрибутам
+				$args = array(
+					// Использование аргумента tax_query для установки параметров терминов таксономии
+					'tax_query'      => array(
+						// Использование нескольких таксономий требует параметр relation
+						'relation' => 'AND',
+						// значение AND для выборки товаров принадлежащим одновременно ко всем указанным терминам
+						// массив для категории имеющей слаг slug-category-1
+						array(
+							'taxonomy' => 'product_cat',
+							'field'    => 'id',
+							'terms'    => $item_cat->term_id
+						),
+					),
+					// Параметры отображения выведенных товаров
+					'posts_per_page' => 3, // количество выводимых товаров
+					'post_type'      => 'product', // тип товара
+					'orderby'        => 'title', // сортировка
+				);
+
+				$loop = new WP_Query( $args );
+				while ( $loop->have_posts() ) : $loop->the_post();
+					global $product;
+					?>
+
+                    <article class="product-item">
+                        <div class="product-item__top">
+
+	                        <?php if ( get_field( 'is_hit', $post->ID) == 1 ) : ?>
+                                <div class="product-item__sticker">Хит</div>
+	                        <?php endif; ?>
+
+                            <?php
+							if ( has_post_thumbnail( $loop->post->ID ) ) {
+								echo get_the_post_thumbnail( $loop->post->ID, 'shop_catalog' );
+							} else {
+								echo '<img src="' . woocommerce_placeholder_img_src() . '" alt="Placeholder" width="250px" height="250px" />';
+							}
+							?>
+
+                        </div>
+                        <div class="product-item__middle">
+
+							<?php
+							if ( $product->stock_status == 'instock') {
+								echo '<div class="product-item__available">В наличии</div>';
+							} else {
+								echo '<div class="product-item__available product-item__available_not">Нет в наличии</div>';
+							}
+							?>
+
+                            <h4 class="product-item__title"><?php the_title(); ?></h4>
+                            <ul class="product-item__property">
+                                <li><?php
+		                            $values = get_the_terms( $post->ID, 'pa_tip' );
+		                            foreach ( $values as $value ) {
+			                            echo $value->name;
+		                            }
+		                            ?></li>
+                                <li>Мощность: <?php
+		                            $values = get_the_terms( $post->ID, 'pa_moshhnost' );
+		                            foreach ( $values as $value ) {
+			                            echo $value->name;
+		                            }
+		                            ?>
+                                </li>
+                            </ul>
+                            <div class="product-item__price">от <?php echo $product->get_price_html(); ?></div>
+                        </div>
+                        <div class="product-item__bottom">
+                            <a href="<?php echo get_permalink( $loop->post->ID ) ?>" class="btn">Подробнее</a>
+                            <a href="#" class="more-link">Узнать цену</a>
+                        </div>
+                    </article>
+
+				<?php endwhile; ?>
+                <!-- Сброс данных запроса -->
+				<?php wp_reset_query(); ?>
+            </div
+        </div> <!-- contaienr -->
+    </section>
+
+	<?php
+}
+
+?>
 
 
 <?php
-if ( woocommerce_product_loop() ) {
-
-	/**
-	 * Hook: woocommerce_before_shop_loop.
-	 *
-	 * @hooked woocommerce_output_all_notices - 10
-	 * @hooked woocommerce_result_count - 20
-	 * @hooked woocommerce_catalog_ordering - 30
-	 */
-	do_action( 'woocommerce_before_shop_loop' );
-
-	woocommerce_product_loop_start();
-
-	if ( wc_get_loop_prop( 'total' ) ) {
-		while ( have_posts() ) {
-			the_post();
-
-			/**
-			 * Hook: woocommerce_shop_loop.
-			 */
-			do_action( 'woocommerce_shop_loop' );
-
-			wc_get_template_part( 'content', 'product' );
-		}
-	}
-
-	woocommerce_product_loop_end();
-
-	/**
-	 * Hook: woocommerce_after_shop_loop.
-	 *
-	 * @hooked woocommerce_pagination - 10
-	 */
-	do_action( 'woocommerce_after_shop_loop' );
-} else {
-	/**
-	 * Hook: woocommerce_no_products_found.
-	 *
-	 * @hooked wc_no_products_found - 10
-	 */
-	do_action( 'woocommerce_no_products_found' );
-}
-
-
 /**
  * Hook: woocommerce_archive_description.
  *

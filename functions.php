@@ -746,46 +746,77 @@ add_action( 'woocommerce_single_product_summary', 'product_stock_status_func', 1
  */
 function product_attributes_func() {
 	global $product;
-	$attributes = $product->get_attributes(); ?>
 
-    <ul class="product__property">
+	$attributes = $product->get_attributes();
 
-		<?php foreach ( $attributes as $attribute ) :
-			if ( empty( $attribute['is_visible'] ) || ( $attribute['is_taxonomy'] && ! taxonomy_exists( $attribute['name'] ) ) ) {
-				continue;
-			} else {
-				$has_row = true;
-			}
-			?>
+	if ( ! $attributes ) {
 
-            <li class="<?php if ( ( $alt = $alt * - 1 ) == 1 ) {
-				echo 'alt';
-			} ?>">
+		return;
 
-                <span><?php echo wc_attribute_label( $attribute['name'] ); ?>:</span>
+	}
 
-				<?php
-				if ( $attribute['is_taxonomy'] ) {
+	$display_result = '';
 
-					$values = wc_get_product_terms( $product->ID, $attribute['name'], array( 'fields' => 'names' ) );
-					echo apply_filters( 'woocommerce_attribute', wptexturize( implode( ', ', $values ) ), $attribute, $values );
 
-				} else {
+	foreach ( $attributes as $attribute ) {
 
-					// Convert pipes to commas and display values
-					$values = array_map( 'trim', explode( WC_DELIMITER, $attribute['value'] ) );
-					echo apply_filters( 'woocommerce_attribute', wptexturize( implode( ', ', $values ) ), $attribute, $values );
+		if ( $attribute->get_variation() ) {
+			continue;
+		}
+
+		$name = $attribute->get_name();
+
+		if ( $attribute->is_taxonomy() ) {
+
+			$terms = wp_get_post_terms( $product->get_id(), $name, 'all' );
+
+			$njengahtax = $terms[0]->taxonomy;
+
+			$njengah_object_taxonomy = get_taxonomy($njengahtax);
+
+			if ( isset ($njengah_object_taxonomy->labels->singular_name) ) {
+
+				$tax_label = $njengah_object_taxonomy->labels->singular_name;
+
+			} elseif ( isset( $njengah_object_taxonomy->label ) ) {
+
+				$tax_label = $njengah_object_taxonomy->label;
+
+				if ( 0 === strpos( $tax_label, 'Product ' ) ) {
+
+					$tax_label = substr( $tax_label, 8 );
 
 				}
-				?>
 
-            </li>
+			}
 
-		<?php endforeach; ?>
+			$display_result .= '<ul class="product__property">';
+			$display_result .= '<li><span>' . $tax_label . ':</span> ';
 
-    </ul>
+			$tax_terms = array();
 
-	<?php
+			foreach ( $terms as $term ) {
+
+				$single_term = esc_html( $term->name );
+
+				array_push( $tax_terms, $single_term );
+
+			}
+
+			$display_result .= implode(', ', $tax_terms) .  '</li>';
+			$display_result .= '</ul>';
+
+		} else {
+			$display_result .= '<ul class="product__property">';
+			$display_result .= '<li><span>' . $name . ':</span> ';
+			$display_result .= esc_html( implode( ', ', $attribute->get_options() ) ) . '</li>';
+			$display_result .= '</ul>';
+		}
+
+	}
+
+	echo $display_result;
+
 }
 
 add_action( 'woocommerce_single_product_summary', 'product_attributes_func', 65 );
@@ -900,7 +931,7 @@ function woocommerce_product_archive_description() {
 
 			$description = wc_format_content( wp_kses( $shop_page->post_content, $allowed_html ) );
 			if ( $description ) { ?>
-				<section class="seo-text">
+                <section class="seo-text">
                     <div class="container">
                         <h2>Какие ошибки бывают, при выборе котла отопления и системы отопления для частного дома?</h2>
                         <div class="seo-text__visible seo-text__visible_off"><?= $description ?></div>
@@ -913,3 +944,15 @@ function woocommerce_product_archive_description() {
 
 add_action( 'woocommerce_archive_description', 'product_brand_func', 5 );
 add_action( 'woocommerce_archive_description', 'woocommerce_product_archive_description', 10 );
+
+
+/*
+ * removepanel woo into customizer
+ */
+
+function mytheme_customize_register( $wp_customize ) {
+	$wp_customize->remove_panel( 'woocommerce' );
+
+}
+
+add_action( 'customize_register', 'mytheme_customize_register', 99 );
