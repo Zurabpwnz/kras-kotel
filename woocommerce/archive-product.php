@@ -31,108 +31,122 @@ do_action( 'woocommerce_before_main_content' ); ?>
 
 <?php
 
+$taxonomy     = 'product_cat';
+$orderby      = 'name';
+$show_count   = 0;      // 1 for yes, 0 for no
+$pad_counts   = 0;      // 1 for yes, 0 for no
+$hierarchical = 1;      // 1 for yes, 0 for no
+$title        = '';
+$empty        = 0;
 $args         = [
-	'taxonomy' => 'product_cat'
+	'taxonomy'     => $taxonomy,
+	'orderby'      => $orderby,
+	'show_count'   => $show_count,
+	'pad_counts'   => $pad_counts,
+	'hierarchical' => $hierarchical,
+	'title_li'     => $title,
+	'hide_empty'   => $empty
 ];
-$categories   = get_categories( $args );
-$postParentIn = [];
+
+$categories = get_categories( $args );
 
 foreach ( $categories as $item_cat ) {
-	$postParentIn[] = $item_cat->term_id;
-	?>
+	if ( $item_cat->category_parent == 0 ) { ?>
 
-    <section class="catalog">
-        <div class="container">
-            <div class="group-title">
-                <h3 class="title title-h3"><?php echo $item_cat->name; ?></h3>
-                <a href="<?php echo get_category_link( $item_cat->term_id ); ?>" class="more-link">Перейти в каталог</a>
-            </div> <!-- group-title -->
+        <section class="catalog">
+            <div class="container">
+                <div class="group-title">
+                    <h3 class="title title-h3"><?php echo $item_cat->name; ?></h3>
+                    <a href="<?php echo get_category_link( $item_cat->term_id ); ?>" class="more-link">Перейти в
+                        каталог</a>
+                </div> <!-- group-title -->
 
-            <div class="col col-3">
-				<?php
-				// Выполнение запроса по категориям и атрибутам
-				$args = array(
-					// Использование аргумента tax_query для установки параметров терминов таксономии
-					'tax_query'      => array(
-						// Использование нескольких таксономий требует параметр relation
-						'relation' => 'AND',
-						// значение AND для выборки товаров принадлежащим одновременно ко всем указанным терминам
-						// массив для категории имеющей слаг slug-category-1
-						array(
-							'taxonomy' => 'product_cat',
-							'field'    => 'id',
-							'terms'    => $item_cat->term_id
+                <div class="col col-3">
+					<?php
+					// Выполнение запроса по категориям и атрибутам
+					$args = array(
+						// Использование аргумента tax_query для установки параметров терминов таксономии
+						'tax_query'      => array(
+							// Использование нескольких таксономий требует параметр relation
+							'relation' => 'AND',
+							// значение AND для выборки товаров принадлежащим одновременно ко всем указанным терминам
+							// массив для категории имеющей слаг slug-category-1
+							array(
+								'taxonomy' => 'product_cat',
+								'field'    => 'id',
+								'terms'    => $item_cat->term_id
+							),
 						),
-					),
-					// Параметры отображения выведенных товаров
-					'posts_per_page' => 3, // количество выводимых товаров
-					'post_type'      => 'product', // тип товара
-					'orderby'        => 'title', // сортировка
-				);
+						// Параметры отображения выведенных товаров
+						'posts_per_page' => 3, // количество выводимых товаров
+						'post_type'      => 'product', // тип товара
+						'orderby'        => 'title', // сортировка
+					);
 
-				$loop = new WP_Query( $args );
-				while ( $loop->have_posts() ) : $loop->the_post();
-					global $product;
-					?>
+					$loop = new WP_Query( $args );
+					while ( $loop->have_posts() ) : $loop->the_post();
+						global $product;
+						?>
 
-                    <article class="product-item">
-                        <div class="product-item__top">
+                        <article class="product-item">
+                            <div class="product-item__top">
 
-	                        <?php if ( get_field( 'is_hit', $post->ID) == 1 ) : ?>
-                                <div class="product-item__sticker">Хит</div>
-	                        <?php endif; ?>
+								<?php if ( get_field( 'is_hit', $post->ID ) == 1 ) : ?>
+                                    <div class="product-item__sticker">Хит</div>
+								<?php endif; ?>
 
-                            <?php
-							if ( has_post_thumbnail( $loop->post->ID ) ) {
-								echo get_the_post_thumbnail( $loop->post->ID, 'shop_catalog' );
-							} else {
-								echo '<img src="' . woocommerce_placeholder_img_src() . '" alt="Placeholder" width="250px" height="250px" />';
-							}
-							?>
+								<?php
+								if ( has_post_thumbnail( $loop->post->ID ) ) {
+									echo get_the_post_thumbnail( $loop->post->ID, 'shop_catalog' );
+								} else {
+									echo '<img src="' . woocommerce_placeholder_img_src() . '" alt="Placeholder" width="250px" height="250px" />';
+								}
+								?>
 
-                        </div>
-                        <div class="product-item__middle">
+                            </div>
+                            <div class="product-item__middle">
 
-							<?php
-							if ( $product->stock_status == 'instock') {
-								echo '<div class="product-item__available">В наличии</div>';
-							} else {
-								echo '<div class="product-item__available product-item__available_not">Нет в наличии</div>';
-							}
-							?>
+								<?php
+								if ( $product->stock_status == 'instock' ) {
+									echo '<div class="product-item__available">В наличии</div>';
+								} else {
+									echo '<div class="product-item__available product-item__available_not">Нет в наличии</div>';
+								}
+								?>
 
-                            <h4 class="product-item__title"><?php the_title(); ?></h4>
-                            <ul class="product-item__property">
-                                <li><?php
-		                            $values = get_the_terms( $post->ID, 'pa_tip' );
-		                            foreach ( $values as $value ) {
-			                            echo $value->name;
-		                            }
-		                            ?></li>
-                                <li>Мощность: <?php
-		                            $values = get_the_terms( $post->ID, 'pa_moshhnost' );
-		                            foreach ( $values as $value ) {
-			                            echo $value->name;
-		                            }
-		                            ?>
-                                </li>
-                            </ul>
-                            <div class="product-item__price">от <?php echo $product->get_price_html(); ?></div>
-                        </div>
-                        <div class="product-item__bottom">
-                            <a href="<?php echo get_permalink( $loop->post->ID ) ?>" class="btn">Подробнее</a>
-                            <a href="#" class="more-link">Узнать цену</a>
-                        </div>
-                    </article>
+                                <h4 class="product-item__title"><?php the_title(); ?></h4>
+                                <ul class="product-item__property">
+                                    <li><?php
+										$values = get_the_terms( $post->ID, 'pa_tip' );
+										foreach ( $values as $value ) {
+											echo $value->name;
+										}
+										?></li>
+                                    <li>Мощность: <?php
+										$values = get_the_terms( $post->ID, 'pa_moshhnost' );
+										foreach ( $values as $value ) {
+											echo $value->name;
+										}
+										?>
+                                    </li>
+                                </ul>
+                                <div class="product-item__price">от <?php echo $product->get_price_html(); ?></div>
+                            </div>
+                            <div class="product-item__bottom">
+                                <a href="<?php echo get_permalink( $loop->post->ID ) ?>" class="btn">Подробнее</a>
+                                <a href="#" class="more-link">Узнать цену</a>
+                            </div>
+                        </article>
 
-				<?php endwhile; ?>
-                <!-- Сброс данных запроса -->
-				<?php wp_reset_query(); ?>
-            </div
-        </div> <!-- contaienr -->
-    </section>
+					<?php endwhile; ?>
+                    <!-- Сброс данных запроса -->
+					<?php wp_reset_query(); ?>
+                </div
+            </div> <!-- contaienr -->
+        </section>
 
-	<?php
+		<?php
+	}
 }
 
 ?>
