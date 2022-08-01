@@ -73,7 +73,7 @@ do_action( 'woocommerce_before_main_content' ); ?>
 							<div class="page-inner__form-ava"><img src="https://kraskotel.local/wp-content/themes/kras-kotel/assets/img/ava.png" alt="менеджер Крас-Котел"></div>
 							<p>Оставьте свои данные! Наш менеджер <span>перезвонит вам в течении 15 минут</span></p>
 						</div>
-						<form action="#" abineguid="66A03AC5F3264CF891EC8DF9198569F6">
+						<form action="#">
 							<div class="form-group form-group_col-3">
 								<div class="placeholder-container">
 									<input type="text" class="input-main" placeholder=" ">
