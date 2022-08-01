@@ -679,6 +679,11 @@ remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_p
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 
 
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10 );
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+
+
 /*
  * product_breadcrumbs_func()
  */
@@ -962,17 +967,19 @@ add_action( 'customize_register', 'mytheme_customize_register', 99 );
 /*
  * sidebar
  */
-function register_my_widgets(){
+function register_my_widgets() {
 	register_sidebar( array(
-		'name' => "Правая боковая панель сайта",
-		'id' => 'right-sidebar',
-		'description' => 'Эти виджеты будут показаны в правой колонке сайта',
-		'before_title' => '<h2>',
-		'after_title' => '</h2>'
+		'name'          => "Правая боковая панель сайта",
+		'id'            => 'right-sidebar',
+		'description'   => 'Эти виджеты будут показаны в правой колонке сайта',
+		'before_widget' => '<div id="%1$s" class="widget filter__group %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<<div class="filter__label">',
+		'after_title'   => '</div>'
 	) );
 }
-add_action( 'widgets_init', 'register_my_widgets' );
 
+add_action( 'widgets_init', 'register_my_widgets' );
 
 
 // Disables the block editor from managing widgets.
