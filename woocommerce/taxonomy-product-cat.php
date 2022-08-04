@@ -128,26 +128,23 @@ if ( count( $ancestors ) <= 0 ) {
             <div class="col col-page">
 
                 <div class="page-inner__content">
-                    <div class="col col-3">
 
-						<?php foreach ( $terms as $term ) { ?>
+					<?php foreach ( $terms as $term ) { ?>
 
-                            <a href="<?php echo esc_url( get_term_link( $term ) ); ?>"
-                               class="product-item product-item_center">
-                                <div class="product-item__top">
-									<?php woocommerce_subcategory_thumbnail( $term ); ?>
-                                </div>
-                                <div class="product-item__middle">
-                                    <h4 class="product-item__title"><?php echo $term->name; ?></h4>
-                                </div>
-                                <div class="product-item__bottom">
-                                    <button class="btn">Смотреть все</button>
-                                </div>
-                            </a>
+                        <a href="<?php echo esc_url( get_term_link( $term ) ); ?>"
+                           class="product-item product-item_center">
+                            <div class="product-item__top">
+								<?php woocommerce_subcategory_thumbnail( $term ); ?>
+                            </div>
+                            <div class="product-item__middle">
+                                <h4 class="product-item__title"><?php echo $term->name; ?></h4>
+                            </div>
+                            <div class="product-item__bottom">
+                                <button class="btn">Смотреть все</button>
+                            </div>
+                        </a>
 
-						<?php } ?>
-
-                    </div>
+					<?php } ?>
 
 					<?php
 					if ( woocommerce_product_loop() ) {
