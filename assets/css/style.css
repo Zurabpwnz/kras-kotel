@@ -902,7 +902,7 @@ main {
   background: #FFFFFF;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
   position: relative;
-  z-index: 3;
+  z-index: 2;
 }
 .header-page__hr {
   border: 1px solid #F4F4F4;
@@ -2002,6 +2002,47 @@ input[type=range]::-webkit-slider-runnable-track {
   position: relative;
   font-size: 12px;
   padding-left: 3px;
+}
+.filter__slider-control {
+  display: block;
+  width: 100%;
+  height: 56px;
+  background: #F1F4F6;
+  border-radius: 5px;
+  border: none;
+  padding: 16px;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: left;
+}
+.filter__slider-control-column {
+  padding: 0;
+  width: 100%;
+}
+.filter__slider-control-group {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.pc-range-slider__control {
+  background: #E6E6E6;
+  border-radius: 100px;
+  border: none;
+}
+.pc-range-slider__control .ui-slider-range {
+  background: #D2170D;
+  border-radius: 100px;
+  height: 3px;
+}
+.pc-range-slider__control .ui-slider-handle {
+  width: 20px !important;
+  height: 20px !important;
+  background: #D2170D;
+  border: 1px solid #FFFFFF;
+  border-radius: 100px;
 }
 
 .form-group {
