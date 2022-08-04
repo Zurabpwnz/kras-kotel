@@ -4,8 +4,9 @@
 .page-inner{
     margin-bottom: 56px;
     &__content{
-        display: grid;
+        display: flex;
         gap: 30px;
+        flex-direction: column;
     }
     &__form{
         background: #FFFFFF;

@@ -19,28 +19,28 @@ function site_scripts() {
 add_action( 'wp_enqueue_scripts', 'site_scripts' );
 
 
-function form_handler() {
-	if ( empty( $_POST ) ) {
-		return;
-	} else {
-		header( 'Location: ./thankyou/' );
+// function form_handler() {
+// 	if ( empty( $_POST ) ) {
+// 		return;
+// 	} else {
+// 		header( 'Location: ./thankyou/' );
 
-		$res = [];
+// 		$res = [];
 
-		$email1 = get_option( 'mail_send_email_1' );
-		$email2 = get_option( 'mail_send_email_2' );
-//        $email3 = get_option('mail_send_email_3');
+// 		$email1 = get_option( 'mail_send_email_1' );
+// 		$email2 = get_option( 'mail_send_email_2' );
+// //        $email3 = get_option('mail_send_email_3');
 
-		$emails = [ $email1, $email2 ];
-//        $emailfrom = get_option('mail_email_from');
-		$companyfrom = get_option( 'mail_company_from' );
-		require __DIR__ . '/sendmail.php';
+// 		$emails = [ $email1, $email2 ];
+// //        $emailfrom = get_option('mail_email_from');
+// 		$companyfrom = get_option( 'mail_company_from' );
+// 		require __DIR__ . '/sendmail.php';
 
-//        debug($res)
-	}
-}
+// //        debug($res)
+// 	}
+// }
 
-add_action( 'wp', 'form_handler' );
+// add_action( 'wp', 'form_handler' );
 
 add_theme_support( 'post-thumbnails' );
 
