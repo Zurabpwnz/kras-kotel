@@ -36,7 +36,7 @@ $term_id_prefixed = $taxonomy_prefix . '_' . $term_id;
  */
 do_action( 'woocommerce_before_main_content' );
 
-$parentid  = get_queried_object_id();
+$parentid = get_queried_object_id();
 
 // проверяем кол-во родителей
 $ancestors = get_ancestors( $parentid, 'product_cat' );
@@ -49,6 +49,7 @@ $terms = get_terms( 'product_cat', $args );
 
 // если нету родителя тогда это верхний уровень категории
 if ( count( $ancestors ) <= 0 ) {
+
 	if ( $terms ) { ?>
 
         <section class="page-inner">
@@ -118,126 +119,124 @@ if ( count( $ancestors ) <= 0 ) {
         </section>
 
 	<?php }
-} else {
-    // если это дочерние бренды и листинг товара
-	if ( $terms ) { ?>
+} else {     // если это дочерние бренды и листинг товара ?>
 
-        <section class="page-inner">
-            <div class="container">
-                <h1 class="title title-h3"><?php echo $term_object->name; ?></h1>
+    <section class="page-inner">
+        <div class="container">
+            <h1 class="title title-h3"><?php echo $term_object->name; ?></h1>
 
-                <div class="col col-page">
+            <div class="col col-page">
 
-                    <div class="page-inner__content">
-                        <div class="col col-3">
+                <div class="page-inner__content">
+                    <div class="col col-3">
 
-							<?php foreach ( $terms as $term ) { ?>
+						<?php foreach ( $terms as $term ) { ?>
 
-                                <a href="<?php echo esc_url( get_term_link( $term ) ); ?>"
-                                   class="product-item product-item_center">
-                                    <div class="product-item__top">
-										<?php woocommerce_subcategory_thumbnail( $term ); ?>
-                                    </div>
-                                    <div class="product-item__middle">
-                                        <h4 class="product-item__title"><?php echo $term->name; ?></h4>
-                                    </div>
-                                    <div class="product-item__bottom">
-                                        <button class="btn">Смотреть все</button>
-                                    </div>
-                                </a>
+                            <a href="<?php echo esc_url( get_term_link( $term ) ); ?>"
+                               class="product-item product-item_center">
+                                <div class="product-item__top">
+									<?php woocommerce_subcategory_thumbnail( $term ); ?>
+                                </div>
+                                <div class="product-item__middle">
+                                    <h4 class="product-item__title"><?php echo $term->name; ?></h4>
+                                </div>
+                                <div class="product-item__bottom">
+                                    <button class="btn">Смотреть все</button>
+                                </div>
+                            </a>
 
-							<?php } ?>
+						<?php } ?>
 
-                        </div>
+                    </div>
 
-						<?php
-						if ( woocommerce_product_loop() ) {
+					<?php
+					if ( woocommerce_product_loop() ) {
 
-							/**
-							 * Hook: woocommerce_before_shop_loop.
-							 *
-							 * @hooked woocommerce_output_all_notices - 10
-							 * @hooked woocommerce_result_count - 20
-							 * @hooked woocommerce_catalog_ordering - 30
-							 */
-							do_action( 'woocommerce_before_shop_loop' );
+						/**
+						 * Hook: woocommerce_before_shop_loop.
+						 *
+						 * @hooked woocommerce_output_all_notices - 10
+						 * @hooked woocommerce_result_count - 20
+						 * @hooked woocommerce_catalog_ordering - 30
+						 */
+						do_action( 'woocommerce_before_shop_loop' );
 
-							woocommerce_product_loop_start();
+						woocommerce_product_loop_start();
 
-							if ( wc_get_loop_prop( 'total' ) ) {
-								while ( have_posts() ) {
-									the_post();
+						if ( wc_get_loop_prop( 'total' ) ) {
+							while ( have_posts() ) {
+								the_post();
 
-									/**
-									 * Hook: woocommerce_shop_loop.
-									 */
-									do_action( 'woocommerce_shop_loop' );
+								/**
+								 * Hook: woocommerce_shop_loop.
+								 */
+								do_action( 'woocommerce_shop_loop' );
 
-									wc_get_template_part( 'content', 'product' );
-								}
+								wc_get_template_part( 'content', 'product' );
 							}
-
-							woocommerce_product_loop_end();
-
-							/**
-							 * Hook: woocommerce_after_shop_loop.
-							 *
-							 * @hooked woocommerce_pagination - 10
-							 */
-							do_action( 'woocommerce_after_shop_loop' );
-						} else {
-							/**
-							 * Hook: woocommerce_no_products_found.
-							 *
-							 * @hooked wc_no_products_found - 10
-							 */
-							do_action( 'woocommerce_no_products_found' );
 						}
-						?>
 
-                        <div class="page-inner__form">
-                            <div class="page-inner__form-top">
-                                <div class="page-inner__form-ava"><img src="./assets/img/ava.png"
-                                                                       alt="менеджер Крас-Котел">
-                                </div>
-                                <p>Оставьте свои данные! Наш менеджер <span>перезвонит вам в течении 15 минут</span></p>
+						woocommerce_product_loop_end();
+
+						/**
+						 * Hook: woocommerce_after_shop_loop.
+						 *
+						 * @hooked woocommerce_pagination - 10
+						 */
+						do_action( 'woocommerce_after_shop_loop' );
+					} else {
+						/**
+						 * Hook: woocommerce_no_products_found.
+						 *
+						 * @hooked wc_no_products_found - 10
+						 */
+						do_action( 'woocommerce_no_products_found' );
+					}
+					?>
+
+                    <div class="page-inner__form">
+                        <div class="page-inner__form-top">
+                            <div class="page-inner__form-ava"><img src="./assets/img/ava.png"
+                                                                   alt="менеджер Крас-Котел">
                             </div>
-                            <form action="#">
-                                <div class="form-group form-group_col-3">
-                                    <div class="placeholder-container">
-                                        <input type="text" class="input-main" placeholder=" ">
-                                        <label>Ваш номер телефона</label>
-                                    </div>
-                                    <div class="placeholder-container">
-                                        <input type="text" class="input-main" placeholder=" ">
-                                        <label>Имя</label>
-                                    </div>
-                                    <div class="form-btn">
-                                        <button class="btn btn-large">Обратиться к нам</button>
-                                        <p>Нажимая на кнопку вы соглашаетесь с <a href="#">обработкой персональных
-                                                данных</a></p>
-                                    </div>
-                                </div>
-                            </form>
+                            <p>Оставьте свои данные! Наш менеджер <span>перезвонит вам в течении 15 минут</span></p>
                         </div>
+                        <form action="#">
+                            <div class="form-group form-group_col-3">
+                                <div class="placeholder-container">
+                                    <input type="text" class="input-main" placeholder=" ">
+                                    <label>Ваш номер телефона</label>
+                                </div>
+                                <div class="placeholder-container">
+                                    <input type="text" class="input-main" placeholder=" ">
+                                    <label>Имя</label>
+                                </div>
+                                <div class="form-btn">
+                                    <button class="btn btn-large">Обратиться к нам</button>
+                                    <p>Нажимая на кнопку вы соглашаетесь с <a href="#">обработкой персональных
+                                            данных</a></p>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
 
-                    </div> <!-- page-inner__content -->
+                </div> <!-- page-inner__content -->
 
-                    <aside class="aside">
-						<?php
-						if ( function_exists( 'dynamic_sidebar' ) ) {
-							dynamic_sidebar( 'right-sidebar' );
-						}
-						?>
-                    </aside>
-                </div> <!-- col-page -->
+                <aside class="aside">
+					<?php
+					if ( function_exists( 'dynamic_sidebar' ) ) {
+						dynamic_sidebar( 'right-sidebar' );
+					}
+					?>
+                </aside>
+            </div> <!-- col-page -->
 
-            </div> <!-- contaienr -->
-        </section>
+        </div> <!-- contaienr -->
+    </section>
 
-	<?php }
+	<?php
 }
 
-require get_template_directory() . '/inc/brands.php';
+//require get_template_directory() . '/inc/brands.php';
 
-get_footer( 'shop' );
+get_footer();
