@@ -39,7 +39,7 @@
                 <div class="feature__item-inner">
                     <div class="feature__info">
                         <h4><? the_field('feature_heading_4', 'option')?></h4>
-                        <p><? the_field('feature_heading_4', 'option')?></p>
+                        <p><? the_field('feature_desc_4', 'option')?></p>
                     </div>
                     <div class="feature__icon">
                         <svg><use xlink:href="<?php bloginfo('template_url') ?>/assets/img/main-sprite.svg#feature-4"></use></svg>
@@ -50,7 +50,7 @@
                 <div class="feature__item-inner">
                     <div class="feature__info">
                         <h4><? the_field('feature_heading_5', 'option')?></h4>
-                        <p><? the_field('feature_heading_5', 'option')?></p>
+                        <p><? the_field('feature_desc_5', 'option')?></p>
                     </div>
                     <div class="feature__icon">
                         <svg><use xlink:href="<?php bloginfo('template_url') ?>/assets/img/main-sprite.svg#feature-5"></use></svg>
