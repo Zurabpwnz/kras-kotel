@@ -35,6 +35,9 @@
         z-index: -1;
     }
 
+    .form-group{
+        max-width: 810px;
+    }
     &__topline{ 
         display: flex;
         justify-content: space-between;

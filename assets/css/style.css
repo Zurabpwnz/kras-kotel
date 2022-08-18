@@ -612,6 +612,9 @@ main {
   background: linear-gradient(360deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 29.18%), linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 74.53%), radial-gradient(66.2% 90.69% at 51.46% 83.49%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
   z-index: -1;
 }
+.header-main .form-group {
+  max-width: 810px;
+}
 .header-main__topline {
   display: flex;
   justify-content: space-between;
@@ -1665,27 +1668,25 @@ main {
   }
 }
 .news__grid_sale {
-  grid-template-columns: repeat(2, 1fr);
-}
-@media (max-width: 1024px) {
-  .news__grid_sale {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-@media (max-width: 768px) {
-  .news__grid_sale {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 550px) {
-  .news__grid_sale {
-    grid-template-columns: repeat(1, 1fr);
-  }
+  grid-template-columns: 1fr;
+  gap: 26px;
 }
 .news__item {
   background: #FFFFFF;
   box-shadow: 0px 4px 24px rgba(181, 181, 181, 0.15);
   border-radius: 6px;
+}
+.news__item_sale {
+  grid-template-columns: 1fr 2fr;
+  display: grid;
+  box-shadow: none;
+  background: none;
+}
+@media (max-width: 960px) {
+  .news__item_sale {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }
 .news__item:hover h3::before {
   opacity: 1;
@@ -1717,15 +1718,42 @@ main {
   transition: 0.2s;
 }
 .news__img-wrapper_sale {
-  height: 295px;
+  border-radius: 6px;
+  height: 345px;
 }
 .news__img-wrapper_sale img {
-  height: 295px;
+  height: 345px;
 }
 .news__info {
   padding: 24px;
   display: grid;
   gap: 16px;
+}
+.news__info_sale {
+  display: flex;
+  flex-direction: column;
+  padding: 0 24px;
+}
+.news__info_sale ul {
+  display: grid;
+  gap: 8px;
+  color: #676767;
+  opacity: 0.7;
+}
+.news__info_sale ul li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 10px 1fr;
+  gap: 8px;
+  align-items: center;
+  line-height: 130%;
+}
+.news__info_sale ul li::before {
+  width: 10px;
+  height: 2px;
+  background: #D2170D;
+  content: "";
+  position: relative;
 }
 .news__info h3 {
   font-weight: 600;
@@ -1903,6 +1931,13 @@ blockquote.wp-block-quote {
   font-size: 22px;
   line-height: 26px;
   color: #1C1C1C;
+}
+.product__price.old {
+  text-decoration: line-through;
+  color: #a2a2a2;
+  font-size: 17px;
+  font-weight: 400;
+  margin-bottom: -10px;
 }
 .product h1 {
   font-weight: 600;

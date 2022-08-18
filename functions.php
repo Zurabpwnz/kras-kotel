@@ -835,10 +835,10 @@ function product_buy_func() {
 	if ( ! empty( $sale ) ) {
 		echo '<div class="product__price old">' . $price . ' ₽</div>';
 		echo '<div class="product__price"> ' . $sale . ' ₽</div>';
-		echo '<a href="#" class="btn btn-large">Получить консультацию</a>';
+		echo '<a href="#" class="btn btn-large" data-izimodal-open="#modalRequizOrder">Получить консультацию</a>';
 	} else {
 		echo '<div class="product__price">' . $price . ' ₽</div>';
-		echo '<a href="#" class="btn btn-large">Получить консультацию</a>';
+		echo '<a href="#" class="btn btn-large" data-izimodal-open="#modalRequizOrder">Получить консультацию</a>';
 	}
 }
 

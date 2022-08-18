@@ -63,7 +63,7 @@ if ( $modification ) : ?>
                                     <div class="product-item__bottom">
                                         <a href="<?php echo get_the_permalink( $post->ID ); ?>"
                                            class="btn">Подробнее</a>
-                                        <!-- <a href="#" class="more-link">Узнать цену</a> -->
+                                        <!--  -->
                                     </div>
                                 </article>
                             </div>

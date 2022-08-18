@@ -77,16 +77,8 @@
             grid-template-columns: repeat(1, 1fr);
         }
         &_sale{
-            grid-template-columns: repeat(2, 1fr);
-            @media (max-width: 1024px){
-                grid-template-columns: repeat(3, 1fr);
-            }
-            @media (max-width: 768px){
-                grid-template-columns: repeat(2, 1fr);
-            }
-            @media (max-width: 550px){
-                grid-template-columns: repeat(1, 1fr);
-            }
+            grid-template-columns: 1fr;
+            gap: 26px;
         }
     }
 
@@ -94,7 +86,17 @@
         background: #FFFFFF;
         box-shadow: 0px 4px 24px rgba(181, 181, 181, 0.15);
         border-radius: 6px;
+        &_sale{
+            grid-template-columns: 1fr 2fr;
+            display: grid;
+            box-shadow: none;
+            background: none;
 
+            @media (max-width: 960px){
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
         &:hover {
             h3::before{
                 opacity: 1;
@@ -128,10 +130,11 @@
         }
 
         &_sale{
-            height: 295px;
+            border-radius: 6px;
+            height: 345px;
             
             img{
-                height: 295px;
+                height: 345px;
             }
         }
     }
@@ -140,6 +143,35 @@
         padding: 24px;
         display: grid;
         gap: 16px;
+
+        &_sale{
+            display: flex;
+            flex-direction: column;
+            padding: 0 24px;
+            ul{
+                display: grid;
+                gap: 8px;
+                color: #676767;
+                opacity: 0.7;
+
+                li{
+                    position: relative;
+                    display: grid;
+                    grid-template-columns: 10px 1fr;
+                    gap: 8px;
+                    align-items: center;
+                    line-height: 130%;
+
+                    &::before{
+                        width: 10px;
+                        height: 2px;
+                        background: $primary-color;
+                        content: "";
+                        position: relative;
+                    }
+                }
+            }
+        }
 
         h3{
             font-weight: 600;

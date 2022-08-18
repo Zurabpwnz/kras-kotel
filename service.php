@@ -16,13 +16,15 @@ get_header();?>
                     <?php if( have_rows('services') ): ?>
                         <?php while( have_rows('services') ): the_row(); ?>
                             
-                        <a href="<? the_sub_field('link');?>" class="news__item">
+                        <a href="<? the_sub_field('link');?>" class="news__item news__item_sale">
                             <div class="news__img-wrapper news__img-wrapper_sale">
                                 <img src="<? the_sub_field('img');?>" alt="post">
                             </div>
     
-                            <div class="news__info">
+                            <div class="news__info news__info_sale">
                                 <h3><? the_sub_field('heading');?></h3>
+                                <?php the_sub_field( 'desc' ); ?>
+                                <button class="btn">Подробнее</button>
                             </div>
                         </a>
                         <?php endwhile; ?>

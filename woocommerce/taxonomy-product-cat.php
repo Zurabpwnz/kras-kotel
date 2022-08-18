@@ -89,7 +89,7 @@ if ( count( $ancestors ) <= 0 ) {
                         <div class="page-inner__form">
                             <div class="page-inner__form-top">
                                 <div class="page-inner__form-ava"><img
-                                            src="https://kraskotel.local/wp-content/themes/kras-kotel/assets/img/ava.png"
+                                            src="<?php bloginfo('template_url') ?>/assets/img/ava.png"
                                             alt="менеджер Крас-Котел"></div>
                                 <p>Оставьте свои данные! Наш менеджер <span>перезвонит вам в течении 15 минут</span></p>
                             </div>
@@ -195,7 +195,7 @@ if ( count( $ancestors ) <= 0 ) {
 
                     <div class="page-inner__form">
                         <div class="page-inner__form-top">
-                            <div class="page-inner__form-ava"><img src="./assets/img/ava.png"
+                            <div class="page-inner__form-ava"><img src="<?php bloginfo('template_url') ?>/assets/img/ava.png"
                                                                    alt="менеджер Крас-Котел">
                             </div>
                             <p>Оставьте свои данные! Наш менеджер <span>перезвонит вам в течении 15 минут</span></p>

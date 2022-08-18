@@ -69,6 +69,43 @@ if ( post_password_required() ) {
     </div>
 </section>
 
+
+<!-- Модальное окно  - Бесплатный замер*  -->
+<div id="modalRequizOrder" class="modl">
+    <div class="iziModal__content">
+        <div class="iziModal__header">
+            <h3>Оформить заявку на <?php the_title(); ?></h3>
+            <i class="iziModal__close" data-izimodal-close><img
+                        src="<?php bloginfo( 'template_url' ) ?>/assets/img/close.svg" alt=""></i>
+        </div>
+        <form action="#">
+            <div class="iziModal__desc">Оставьте номер телефона и мы перезвоним вам в течении 15 минут</div>
+            <div class="form-group iziModal__form">
+                <div class="placeholder-container">
+                    <input type="text" name="phone" class="input-main" placeholder=" ">
+                    <label>Ваш номер телефона</label>
+                </div>
+                <div class="placeholder-container">
+                    <input type="text" class="input-main" placeholder=" ">
+                    <label>Имя</label>
+                </div>
+                <div class="placeholder-container">
+                    <input type="text" class="input-main" placeholder=" ">
+                    <label>Адрес доставки</label>
+                </div>
+                <div class="placeholder-container">
+                    <input type="text" class="input-main" placeholder=" ">
+                    <label>E-mail</label>
+                </div>
+                <div class="form-btn">
+                    <button class="btn btn-large iziModal__btn">Обратиться к нам</button>
+                    <p>Нажимая на кнопку вы соглашаетесь с <a href="#">обработкой персональных данных</a></p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 <?php
 /**
  * Hook: woocommerce_after_single_product_summary.

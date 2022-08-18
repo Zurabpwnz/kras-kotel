@@ -73,6 +73,6 @@ if ( empty( $product ) || ! $product->is_visible() ) {
     <div class="product-item__bottom">
         <a href="<?php echo get_the_permalink( $product->ID ); ?>"
            class="btn">Подробнее</a>
-        <a href="#" class="more-link">Узнать цену</a>
+        <!-- <a href="#" class="more-link">Узнать цену</a> -->
     </div>
 </article>
