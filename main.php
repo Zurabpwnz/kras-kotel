@@ -16,7 +16,7 @@ get_header('main'); ?>
                         <div class="swiper-wrapper">
                         <?php
                             $args=array(
-                            'showposts'=> 1, //сколько показать статей
+                            'showposts'=> 8, //сколько показать статей
                             'post_type' => 'product', 
                             'caller_get_posts'=>1);
                             $my_query = new wp_query($args);
@@ -85,24 +85,29 @@ get_header('main'); ?>
 
             <div class="container-full">
                 <div class="last-news__grid">
-
-                    <a href="https://kras-kotel.dacorn.ru/privet-mir/" class="last-news__item" style="background-image: url(<?php bloginfo('template_url') ?>/assets/img/post.png);">
-                        <div class="last-news__date">02.03.2022</div>
-                        <h4>Дымоходы и их разновидности</h4>
-                        <button href="#" class="btn">Подробнее</button>
-                    </a> <!--last-news__item-->
-
-                    <a href="https://kras-kotel.dacorn.ru/privet-mir/" class="last-news__item" style="background-image: url(<?php bloginfo('template_url') ?>/assets/img/post2.png);">
-                        <div class="last-news__date">02.03.2022</div>
-                        <h4>Дымоходы и их разновидности</h4>
+                <?php
+                        $args=array(
+                        'showposts'=>3, //сколько показать статей
+                        'orderby'=>data, //сортировка по дате
+                        'caller_get_posts'=>1);
+                        $my_query = new wp_query($args);
+                        if( $my_query->have_posts() ) {
+                        while ($my_query->have_posts()) {
+                        $my_query->the_post();
+                ?>
+                        
+                    <a href="<?php the_permalink();?>" class="last-news__item" style="background-image: url(<?php
+                    $thumb_id = get_post_thumbnail_id();
+                    $thumb_url = wp_get_attachment_image_src($thumb_id,'thumbnail-size', true);
+                    echo $thumb_url[0];
+                    ?>);">
+                        <div class="last-news__date"><?php the_time('j.m.Y'); ?></div>
+                        <h4><?php the_title(); ?></h4>
                         <button class="btn">Подробнее</button>
                     </a> <!--last-news__item-->
+                <?php } }
+                wp_reset_query(); ?>
 
-                    <a href="https://kras-kotel.dacorn.ru/privet-mir/" class="last-news__item" style="background-image: url(<?php bloginfo('template_url') ?>/assets/img/post3.png);">
-                        <div class="last-news__date">02.03.2022</div>
-                        <h4>Дымоходы и их разновидности</h4>
-                        <button class="btn">Подробнее</button>
-                    </a> <!--last-news__item-->
 
                 </div> <!--last-news__grid-->
             </div> <!-- container-full -->

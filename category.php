@@ -20,7 +20,7 @@
 
                     <div class="news__info">
                         <h3><?php the_title(); ?></h3>
-                        <?php the_excerpt(); ?></div>
+                        <?php the_excerpt(); ?>
                     </div>
                 </a>
             <?php endwhile; ?>

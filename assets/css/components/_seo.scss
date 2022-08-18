@@ -57,15 +57,19 @@
 		margin-bottom: 24px;
 		li {
 			position: relative;
-			display: flex;
+			display: inline-block;
+			gap: 4px;
 			align-items: center;
 			font-weight: 400;
 			font-size: 18px;
 			line-height: 130%;
 			color: $second-color;
+			padding-left: 16px;
 			&::before {
-				position: relative;
-				display: flex;
+				position: absolute;
+				left: 0;
+				top: 10px;
+				display: block;
 				background: $primary-color;
 				width: 10px;
 				height: 3px;
@@ -90,7 +94,7 @@
 			font-weight: 400;
 			font-size: 18px;
 			line-height: 130%;
-			color: #273B6A;
+			color: $second-color;
 			&:before {
 				content: counter(num) '.';
 				counter-increment: num;
@@ -100,7 +104,7 @@
 				left: -26px;
 				font-weight: 700;
 				width: 20px;
-				color: #273B6A;
+				color: $primary-color;
 				text-align: right;
 			}
 		}
@@ -112,6 +116,15 @@
 		color: $second-color;
 		margin-bottom: 24px;
 
+		a {
+			color: $primary-color;
+			border-bottom: 1px solid $primary-color;
+			transition: .2s;
+
+			&:hover{
+				opacity: .6;
+			}
+		}
 		&:last-child{
 			margin-bottom: 0;
 		}
@@ -225,4 +238,36 @@
             color: $own-color;
         }
     }
+}
+
+
+.pagination {
+    grid-column-start: 1;
+    grid-column-end: -1;
+	display: flex;
+	gap: 8px;
+	flex-wrap: wrap;
+
+	& * {
+		width: 40px;
+		height: 40px;
+		background: #fff;
+		justify-content: center;
+		display: flex;
+		align-items: center;
+		box-shadow: 0px 4px 24px rgba(181, 181, 181, 0.15);
+		color: #000;
+		transition: .2s;
+		border-radius: 5px;
+
+		&:hover{
+			background: $primary-color;
+			color: #fff;
+		}
+	}
+
+	.current{
+		background: $primary-color;
+		color: #fff;
+	}
 }

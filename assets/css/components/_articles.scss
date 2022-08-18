@@ -54,6 +54,7 @@
         line-height: 140%;
         color: $light-color;
         margin-bottom: 12px;
+        max-width: 370px;
     }
 }
 
@@ -204,4 +205,16 @@
             color: $own-color;
         }
     }
+}
+
+
+.wp-block-gallery.has-nested-images.is-cropped figure.wp-block-image:not(#individual-image) a, .wp-block-gallery.has-nested-images.is-cropped figure.wp-block-image:not(#individual-image) img{
+    object-fit: contain;
+}
+
+blockquote.wp-block-quote {
+    background: #fff0ef;
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 15px;
 }

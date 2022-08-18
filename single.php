@@ -11,9 +11,9 @@ get_header();?>
 
         <section class="seo-text">
             <div class="container">
-                <h1 class="title title-h3"><? wp_title();?></h1>
                 <div class="col col-page">
                     <div class="content">
+                        <h1 class="title title-h3"><? wp_title();?></h1>
                         <? the_content();?>
                     </div> <!-- col -->
 
