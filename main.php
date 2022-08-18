@@ -14,19 +14,22 @@ get_header('main'); ?>
                 <div class="swiper__container">
                     <div class="popular__swiper swiper">
                         <div class="swiper-wrapper">
-                        <?php 
-                        $loop = new WP_Query( array( 
-                        'post_type' => 'product', 
-                        'posts_per_page' => 8,
-                        'orderby' => 'menu_order', 
-                        'order' => 'ASC',
-                        )); 
-
-                        while ( $loop->have_posts() ): $loop->the_post(); ?>
+                        <?php
+                            $args=array(
+                            'showposts'=> 1, //сколько показать статей
+                            'post_type' => 'product', 
+                            'orderby'=>data, //сортировка по дате
+                            'caller_get_posts'=>1);
+                            $my_query = new wp_query($args);
+                            if( $my_query->have_posts() ) {
+                            while ($my_query->have_posts()) {
+                            $my_query->the_post();
+                    ?>
                         <div class="swiper-slide">
                             <? get_template_part('inc/product-item'); ?>
                         </div>
-                        <?php endwhile; ?>
+                    <?php } }
+                    wp_reset_query(); ?>
                   
                         </div>
                     </div> <!-- popular__swiper -->
