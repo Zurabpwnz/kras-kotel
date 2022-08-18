@@ -14,91 +14,20 @@ get_header('main'); ?>
                 <div class="swiper__container">
                     <div class="popular__swiper swiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <article class="product-item">
-                                    <div class="product-item__top">
-                                        <div class="product-item__sticker">Хит</div>
-                                        <img src="<?php bloginfo('template_url') ?>/assets/img/product.png" alt="vulcan eko котел">
-                                    </div>
-                                    <div class="product-item__middle">
-                                        <div class="product-item__available">В наличии</div>
-                                        <h4 class="product-item__title">Vulkan EKO</h4>
-                                        <ul class="product-item__property">
-                                            <li>Автоматические</li>
-                                            <li>Мощность: 12-100 кВт.</li>
-                                        </ul>
-                                        <div class="product-item__price">от 21 560 ₽</div>
-                                    </div>
-                                    <div class="product-item__bottom">
-                                        <a href="https://kras-kotel.dacorn.ru/katalog/kotly-otopleniya/avtomaticheskie-kotly/vulkan-eko/" class="btn">Подробнее</a>
-                                        <a href="#" class="more-link">Узнать цену</a>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="swiper-slide">
-                                <article class="product-item">
-                                    <div class="product-item__top">
-                                        <div class="product-item__sticker">Хит</div>
-                                        <img src="<?php bloginfo('template_url') ?>/assets/img/product.png" alt="vulcan eko котел">
-                                    </div>
-                                    <div class="product-item__middle">
-                                        <div class="product-item__available product-item__available_not">Не наличии</div>
-                                        <h4 class="product-item__title">Vulkan EKO</h4>
-                                        <ul class="product-item__property">
-                                            <li>Автоматические</li>
-                                            <li>Мощность: 12-100 кВт.</li>
-                                        </ul>
-                                        <div class="product-item__price">от 21 560 ₽</div>
-                                    </div>
-                                    <div class="product-item__bottom">
-                                        <a href="https://kras-kotel.dacorn.ru/katalog/kotly-otopleniya/avtomaticheskie-kotly/vulkan-eko/" class="btn">Подробнее</a>
-                                        <a href="#" class="more-link">Узнать цену</a>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="swiper-slide">
-                                <article class="product-item">
-                                    <div class="product-item__top">
-                                        <div class="product-item__sticker">Хит</div>
-                                        <img src="<?php bloginfo('template_url') ?>/assets/img/product.png" alt="vulcan eko котел">
-                                    </div>
-                                    <div class="product-item__middle">
-                                        <div class="product-item__available">В наличии</div>
-                                        <h4 class="product-item__title">Vulkan EKO</h4>
-                                        <ul class="product-item__property">
-                                            <li>Автоматические</li>
-                                            <li>Мощность: 12-100 кВт.</li>
-                                        </ul>
-                                        <div class="product-item__price">от 21 560 ₽</div>
-                                    </div>
-                                    <div class="product-item__bottom">
-                                        <a href="https://kras-kotel.dacorn.ru/katalog/kotly-otopleniya/avtomaticheskie-kotly/vulkan-eko/" class="btn">Подробнее</a>
-                                        <a href="#" class="more-link">Узнать цену</a>
-                                    </div>
-                                </article>
-                            </div>
-                            <div class="swiper-slide">
-                                <article class="product-item">
-                                    <div class="product-item__top">
-                                        <div class="product-item__sticker">Хит</div>
-                                        <img src="<?php bloginfo('template_url') ?>/assets/img/product.png" alt="vulcan eko котел">
-                                    </div>
-                                    <div class="product-item__middle">
-                                        <div class="product-item__available">В наличии</div>
-                                        <h4 class="product-item__title">Vulkan EKO</h4>
-                                        <ul class="product-item__property">
-                                            <li>Автоматические</li>
-                                            <li>Мощность: 12-100 кВт.</li>
-                                        </ul>
-                                        <div class="product-item__price">от 21 560 ₽</div>
-                                    </div>
-                                    <div class="product-item__bottom">
-                                        <a href="https://kras-kotel.dacorn.ru/katalog/kotly-otopleniya/avtomaticheskie-kotly/vulkan-eko/" class="btn">Подробнее</a>
-                                        <a href="#" class="more-link">Узнать цену</a>
-                                    </div>
-                                </article>
-                            </div>
-                            
+                        <?php 
+                        $loop = new WP_Query( array( 
+                        'post_type' => 'product', 
+                        'posts_per_page' => 8,
+                        'orderby' => 'menu_order', 
+                        'order' => 'ASC',
+                        )); 
+
+                        while ( $loop->have_posts() ): $loop->the_post(); ?>
+                        <div class="swiper-slide">
+                            <? get_template_part('inc/product-item'); ?>
+                        </div>
+                        <?php endwhile; ?>
+                  
                         </div>
                     </div> <!-- popular__swiper -->
                     <div class="swiper__pagination">
