@@ -985,3 +985,14 @@ add_action( 'widgets_init', 'register_my_widgets' );
 // Disables the block editor from managing widgets.
 add_filter( 'gutenberg_use_widgets_block_editor', '__return_false', 100 );
 add_filter( 'use_widgets_block_editor', '__return_false' );
+
+
+function dco_pre_get_posts($query) {
+    if (!is_admin() && $query->is_main_query()) {
+        if ($query->is_search) {
+            $query->set('post_type', 'product');
+        }
+    }
+}
+
+add_action('pre_get_posts', 'dco_pre_get_posts');
