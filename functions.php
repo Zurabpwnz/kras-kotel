@@ -833,11 +833,11 @@ function product_buy_func() {
 	$price = get_post_meta( get_the_ID(), '_regular_price', true );
 	$sale  = get_post_meta( get_the_ID(), '_price', true );
 	if ( ! empty( $sale ) ) {
-		echo '<div class="product__price old">от ' . $price . ' ₽</div>';
-		echo '<div class="product__price">от ' . $sale . ' ₽</div>';
+		echo '<div class="product__price old">' . $price . ' ₽</div>';
+		echo '<div class="product__price"> ' . $sale . ' ₽</div>';
 		echo '<a href="#" class="btn btn-large">Получить консультацию</a>';
 	} else {
-		echo '<div class="product__price">от ' . $price . ' ₽</div>';
+		echo '<div class="product__price">' . $price . ' ₽</div>';
 		echo '<a href="#" class="btn btn-large">Получить консультацию</a>';
 	}
 }
