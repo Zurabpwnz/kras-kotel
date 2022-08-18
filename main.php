@@ -18,7 +18,6 @@ get_header('main'); ?>
                             $args=array(
                             'showposts'=> 1, //сколько показать статей
                             'post_type' => 'product', 
-                            'orderby'=>data, //сортировка по дате
                             'caller_get_posts'=>1);
                             $my_query = new wp_query($args);
                             if( $my_query->have_posts() ) {
