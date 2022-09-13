@@ -23,6 +23,12 @@
             color: $second-color;
             margin-bottom: 16px;
 
+            a{
+                color: #D2170D;
+                border-bottom: 1px solid #D2170D;
+                transition: 0.2s;
+            }
+
             &:last-child{
                 margin-bottom: 0;
             }

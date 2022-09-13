@@ -64,7 +64,7 @@
 }
 
 .product{
-    margin-bottom: 68px;
+    // margin-bottom: 68px;
     &__grid{
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -75,17 +75,13 @@
         }
     }
 
-    &__desc{
-        display: grid;
-        gap: 16px;
-    }
-
-    &__property{
+    &__property-item{
         font-size: 12px;
         line-height: 140%;
         color: $own-color;
         display: grid;
         gap: 6px;
+        margin-bottom: 8px;
         span{
             font-weight: 600;
         }
@@ -94,9 +90,12 @@
         border: 1px solid #F1F4F6;
         border-radius: 5px;
         background: #fff;
+        max-height: 430px;
         img{
             width: 100%;
-            object-fit: cover;
+            max-height: 430px;
+            height: 100%;
+            object-fit: contain;
         }
     }
     &__price{
@@ -104,12 +103,12 @@
         font-size: 22px;
         line-height: 26px;
         color: $own-color;
+        margin-bottom: 8px;
         &.old {
             text-decoration: line-through;
             color: #a2a2a2;
             font-size: 17px;
             font-weight: 400;
-            margin-bottom: -10px;
         }
     }
     h1{
@@ -117,5 +116,6 @@
         font-size: 38px;
         line-height: 140%;
         color: $own-color;
+        margin: 8px 0;
     }
 }

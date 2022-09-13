@@ -42,7 +42,7 @@
 
                 <div class="header-main__contacts">
                     <a href="tel:+73912191455" class="header-main__phone">+7 (391) 219 14 55</a>
-                    <a href="mailto:info@kras-kotel.ru" class="header-main__mail">info@kras-kotel.ru</a>
+                    <a href="mailto:kras-kotel@mail.ru " class="header-main__mail">kras-kotel@mail.ru </a>
                 </div>
 
             </div> <!-- header-main__topline -->

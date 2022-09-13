@@ -42,7 +42,7 @@
 
                 <div class="header-main__contacts">
                     <a href="tel:+73912191455" class="header-main__phone">+7 (391) 219 14 55</a>
-                    <a href="mailto:info@kras-kotel.ru" class="header-main__mail">info@kras-kotel.ru</a>
+                    <a href="mailto:kras-kotel@mail.ru" class="header-main__mail">kras-kotel@mail.ru </a>
                 </div>
 
             </div> <!-- header-main__topline -->
@@ -63,7 +63,7 @@
                 <p class="header-main__feature-title"><span>Преимущества в наличии</span></p>
                 <div class="header-main__feature-grid">
                     <div class="header-main__feature-item" data-aos="fade-up" data-aos-duration="1000">
-                        <div class="header-main__feature-count">2 000 +</div>
+                        <div class="header-main__feature-count">1 300 +</div>
                         <div class="header-main__feature-desc">автоматических Котлов работают у наших клиентов</div>
                     </div>
                     <div class="header-main__feature-item" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">

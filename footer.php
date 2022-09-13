@@ -20,7 +20,7 @@
             <div class="footer__contacts">
                 <p class="footer__time-online">Ежедневно с 9:30 до 18:30</p>
                 <a href="tel:+73912191455" class="footer__phone">+7 (391) 219 14 55</a>
-                <a href="mailto:info@kras-kotel.ru" class="footer__mail">info@kras-kotel.ru</a>
+                <a href="mailto:kras-kotel@mail.ru " class="footer__mail">kras-kotel@mail.ru </a>
             </div>
         </div> <!-- footer__line -->
 
@@ -53,9 +53,9 @@
             <div class="footer__social">
                 <p class="footer__time-online">Мы Online, спрашивайте</p>
                 <ul class="footer__social-list">
-                    <li><a href="#">
+                    <li><a href="https://www.instagram.com/kraskotel/">
                             <svg>
-                                <use xlink:href="<?php bloginfo( 'template_url' ) ?>/assets/img/main-sprite.svg#telegram-white"></use>
+                                <use xlink:href="<?php bloginfo( 'template_url' ) ?>/assets/img/main-sprite.svg#vkvk"></use>
                             </svg>
                         </a></li>
                     <li><a href="#">
@@ -63,7 +63,7 @@
                                 <use xlink:href="<?php bloginfo( 'template_url' ) ?>/assets/img/main-sprite.svg#whatsapp-white"></use>
                             </svg>
                         </a></li>
-                    <li><a href="#">
+                    <li><a href="https://vk.com/kraskotel">
                             <svg>
                                 <use xlink:href="<?php bloginfo( 'template_url' ) ?>/assets/img/main-sprite.svg#vk-white"></use>
                             </svg>
@@ -82,7 +82,7 @@
     </div> <!-- container -->
 </footer>
 
-<!-- Модальное окно  - Бесплатный замер*  -->
+
 <div id="modalRequiz" class="modl">
     <div class="iziModal__content">
         <div class="iziModal__header">

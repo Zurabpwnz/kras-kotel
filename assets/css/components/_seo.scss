@@ -241,7 +241,7 @@
 }
 
 
-.pagination {
+.pagination, .page-numbers{
     grid-column-start: 1;
     grid-column-end: -1;
 	display: flex;
@@ -270,4 +270,7 @@
 		background: $primary-color;
 		color: #fff;
 	}
+}
+.woocommerce-pagination{
+	margin-top: 16px;
 }

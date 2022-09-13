@@ -88,7 +88,6 @@ get_header('main'); ?>
                 <?php
                         $args=array(
                         'showposts'=>3, //сколько показать статей
-                        'orderby'=>data, //сортировка по дате
                         'caller_get_posts'=>1);
                         $my_query = new wp_query($args);
                         if( $my_query->have_posts() ) {

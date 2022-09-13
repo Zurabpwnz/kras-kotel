@@ -44,7 +44,7 @@
 
                 <div class="header-main__contacts header-main__contacts_page">
                     <a href="tel:+73912191455" class="header-main__phone header-main__phone_page">+7 (391) 219 14 55</a>
-                    <a href="mailto:info@kras-kotel.ru" class="header-main__mail header-main__mail_page">info@kras-kotel.ru</a>
+                    <a href="mailto:kras-kotel@mail.ru " class="header-main__mail header-main__mail_page">kras-kotel@mail.ru</a>
                 </div>
             </div> <!-- header-main__topline -->
         </div> <!-- container -->

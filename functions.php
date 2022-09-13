@@ -795,8 +795,8 @@ function product_attributes_func() {
 
 			}
 
-			$display_result .= '<ul class="product__property">';
-			$display_result .= '<li><span>' . $tax_label . ':</span> ';
+			$display_result .= '<div class="product__property-item">';
+			$display_result .= '<p><span>' . $tax_label . ':</span> ';
 
 			$tax_terms = array();
 
@@ -808,8 +808,8 @@ function product_attributes_func() {
 
 			}
 
-			$display_result .= implode( ', ', $tax_terms ) . '</li>';
-			$display_result .= '</ul>';
+			$display_result .= implode( ', ', $tax_terms ) . '</p>';
+			$display_result .= '</div>';
 
 		} else {
 			$display_result .= '<ul class="product__property">';

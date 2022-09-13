@@ -59,7 +59,7 @@ AOS.init();
 
 const swiper = new Swiper('.popular__swiper', {
   loop: false,
-  slidesPerView: 3,
+  slidesPerView: 4,
   spaceBetween: 20,
   navigation: {
     nextEl: '.swiper__next',
@@ -79,7 +79,7 @@ const swiper = new Swiper('.popular__swiper', {
       slidesPerView: 2
     },
     1024: {
-      slidesPerView: 3
+      slidesPerView: 4
     }
   }
 });
@@ -205,17 +205,9 @@ $(document).ready(function () {
 
 	$(".modl").iziModal({
 		width: 416,
-		bodyOverflow: true
+		bodyOverflow: true,
+    transitionIn: 'fadeInUp'
 	});
 
 
 });
-
-
-if(1 < 2) {
-  console.log(1);
-} else if (4 < 6) {
-  console.log(2);
-} else {
-
-}
